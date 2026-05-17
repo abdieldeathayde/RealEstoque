@@ -2,13 +2,14 @@ package com.estoque.realcar.mapper;
 
 import com.estoque.realcar.dto.UserDTO;
 import com.estoque.realcar.entities.User;
+import com.estoque.realcar.entities.UserRole;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-03-02T11:05:07-0300",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.8 (JetBrains s.r.o.)"
+    date = "2026-05-16T20:12:54-0300",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 25.0.3 (Azul Systems, Inc.)"
 )
 @Component
 public class UserMapperImpl implements UserMapper {
@@ -20,6 +21,12 @@ public class UserMapperImpl implements UserMapper {
         }
 
         User user = new User();
+
+        user.setUsername( dto.username() );
+        user.setPassword( dto.password() );
+        if ( dto.role() != null ) {
+            user.setRole( Enum.valueOf( UserRole.class, dto.role() ) );
+        }
 
         return user;
     }
@@ -33,6 +40,12 @@ public class UserMapperImpl implements UserMapper {
         String username = null;
         String password = null;
         String role = null;
+
+        username = user.getUsername();
+        password = user.getPassword();
+        if ( user.getRole() != null ) {
+            role = user.getRole().name();
+        }
 
         UserDTO userDTO = new UserDTO( username, password, role );
 

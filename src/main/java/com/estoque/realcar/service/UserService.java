@@ -1,18 +1,18 @@
 package com.estoque.realcar.service;
 
-import com.estoque.realcar.dto.UserDTO;
-import com.estoque.realcar.entities.User;
-import com.estoque.realcar.mapper.UserMapper;
-import com.estoque.realcar.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.estoque.realcar.dto.UserDTO;
+import com.estoque.realcar.entities.User;
+import com.estoque.realcar.repository.UserRepository;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-    private final UserMapper usuarioMapper;
     private final PasswordEncoder passwordEncoder;
 
     public void registro(UserDTO userDTO) {

@@ -1,157 +1,156 @@
 package com.estoque.realcar.service;
 
-import com.estoque.realcar.dto.request.ProdutoRequestDTO;
-
-import com.estoque.realcar.entities.Produto;
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.estoque.realcar.dto.request.ProdutoRequestDTO;
+import com.estoque.realcar.entities.Produto;
+import com.estoque.realcar.repository.ProdutoRepository;
+
 @Service
 public class ExcelImportService {
+
+    @Autowired
+    private ProdutoRepository produtoRepository;
 
     public List<ProdutoRequestDTO> importarDePlanilha(MultipartFile file)
             throws IOException {
 
         List<ProdutoRequestDTO> produtos = new ArrayList<>();
 
-        Workbook workbook = new XSSFWorkbook(file.getInputStream());
+        try (InputStream is = file.getInputStream();
+             Workbook workbook = WorkbookFactory.create(is)) {
+            
+            Sheet sheet = workbook.getSheetAt(0);
 
-        Sheet sheet = workbook.getSheetAt(0);
+            for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+                Row row = sheet.getRow(i);
+                if (row == null) continue;
 
+                Cell codigoCell = row.getCell(0);     // Coluna Código
+                Cell nomeCell = row.getCell(1);       // Coluna DESCRIÇÃO
+                Cell quantidadeCell = row.getCell(2); // Coluna Quantidade
+                Cell precoCell = row.getCell(3);      // Coluna VALOR
 
-        for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+                if (codigoCell == null && nomeCell == null) continue;
 
-            Row row = sheet.getRow(i);
+                String codigo = getCellString(codigoCell);
+                String nome = getCellString(nomeCell);
+                if (nome == null || nome.isBlank()) continue;
 
-            if (row == null) continue;
+                Integer quantidade = converterParaInteiro(getCellString(quantidadeCell));
+                Double preco = converterParaDouble(getCellString(precoCell));
 
-            Cell nomeCell = row.getCell(0); // coluna A
-            Cell quantidadeCell = row.getCell(5); // coluna F
-            Cell precoCell = row.getCell(7); // coluna H
+                ProdutoRequestDTO dto = new ProdutoRequestDTO();
+                dto.setCodigo(codigo);
+                dto.setNome(nome.trim());
+                dto.setQuantidade(quantidade);
+                dto.setPreco(preco != null ? preco : 0.0);
 
-            if (nomeCell == null) continue;
-
-            String nome = getCellString(nomeCell);
-
-            if (nome == null || nome.isBlank()) continue;
-
-            Integer quantidade = getCellInteger(quantidadeCell);
-
-            Double preco = getCellDouble(precoCell);
-
-            ProdutoRequestDTO dto = new ProdutoRequestDTO();
-
-            dto.setNome(nome.trim());
-            dto.setQuantidade(quantidade != null ? quantidade : 0);
-            dto.setPreco(preco != null ? preco : 0.0);
-
-            produtos.add(dto);
+                produtos.add(dto);
+            }
         }
-
-        workbook.close();
-
         return produtos;
     }
 
     private String getCellString(Cell cell) {
-
-        if (cell == null) return null;
-
+        if (cell == null) return "";
+        
         return switch (cell.getCellType()) {
-            case STRING -> cell.getStringCellValue();
-            case NUMERIC -> String.valueOf(cell.getNumericCellValue());
-            default -> null;
+            case STRING -> cell.getStringCellValue().trim();
+            case NUMERIC -> {
+                double valor = cell.getNumericCellValue();
+                if (valor == (long) valor) {
+                    yield String.valueOf((long) valor);
+                }
+                yield String.valueOf(valor);
+            }
+            case FORMULA -> {
+                try {
+                    yield cell.getStringCellValue();
+                } catch (Exception e) {
+                    yield String.valueOf(cell.getNumericCellValue());
+                }
+            }
+            case BOOLEAN -> String.valueOf(cell.getBooleanCellValue());
+            default -> "";
         };
     }
 
-    private Integer getCellInteger(Cell cell) {
-
-        if (cell == null) return 0;
-
-        if (cell.getCellType() == CellType.NUMERIC) {
-            return (int) cell.getNumericCellValue();
+    private Integer converterParaInteiro(String texto) {
+        try {
+            if (texto == null || texto.isBlank()) return 0;
+            // Remove decimais se o Excel exportar como "10.0"
+            if (texto.contains(".")) {
+                texto = texto.split("\\.")[0];
+            }
+            return Integer.parseInt(texto.replaceAll("[^0-9]", ""));
+        } catch (Exception e) {
+            return 0;
         }
-
-        return 0;
     }
 
-    private Double getCellDouble(Cell cell) {
-
-        if (cell == null) return 0.0;
-
-        if (cell.getCellType() == CellType.NUMERIC) {
-            return cell.getNumericCellValue();
+    private Double converterParaDouble(String texto) {
+        try {
+            if (texto == null || texto.isBlank()) return 0.0;
+            // Limpa formatação comum (R$, espaços, separador de milhar)
+            String limpo = texto.replaceAll("[R$\\s]", "")
+                                .replace(".", "")
+                                .replace(",", ".");
+            return Double.parseDouble(limpo);
+        } catch (Exception e) {
+            return 0.0;
         }
-
-        return 0.0;
     }
 
     public int importarESalvar(MultipartFile file)
             throws IOException {
-
-        Repository repository = null;
-
         int total = 0;
 
-        Workbook workbook =
-                new XSSFWorkbook(file.getInputStream());
+        try (InputStream is = file.getInputStream();
+             Workbook workbook = WorkbookFactory.create(is)) {
+            
+            Sheet sheet = workbook.getSheetAt(0);
 
-        Sheet sheet = workbook.getSheetAt(0);
+            for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+                Row row = sheet.getRow(i);
+                if (row == null) continue;
 
-        for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+                Cell codigoCell = row.getCell(0);
+                Cell nomeCell = row.getCell(1);
+                Cell quantidadeCell = row.getCell(2);
+                Cell precoCell = row.getCell(3);
 
-            Row row = sheet.getRow(i);
+                String codigo = getCellString(codigoCell);
+                String nome = getCellString(nomeCell);
+                if (nome == null || nome.isBlank()) continue;
 
-            if (row == null) continue;
+                int quantidade = converterParaInteiro(getCellString(quantidadeCell));
+                double preco = converterParaDouble(getCellString(precoCell));
 
-            Cell nomeCell = row.getCell(0);
-            Cell quantidadeCell = row.getCell(5);
-            Cell precoCell = row.getCell(7);
+                Produto produto = new Produto();
+                produto.setCodigo(codigo);
+                produto.setNome(nome);
+                produto.setDescricao(nome); // Preenche ambos para garantir exibição
+                produto.setQuantidade(quantidade);
+                produto.setPreco(preco);
+                produto.setValor(preco);   // Preenche ambos para garantir exibição
 
-            if (nomeCell == null) continue;
-
-            String nome = nomeCell.toString().trim();
-
-            if (nome.isBlank()) continue;
-
-            int quantidade = 0;
-
-            if (quantidadeCell != null &&
-                    quantidadeCell.getCellType() == CellType.NUMERIC) {
-
-                quantidade = (int)
-                        quantidadeCell.getNumericCellValue();
+                produtoRepository.save(produto);
+                total++;
             }
-
-            double preco = 0.0;
-
-            if (precoCell != null &&
-                    precoCell.getCellType() == CellType.NUMERIC) {
-
-                preco = precoCell.getNumericCellValue();
-            }
-
-            Produto produto = new Produto();
-
-            produto.setNome(nome);
-            produto.setQuantidade(quantidade);
-            produto.setPreco(preco);
-
-            repository.save(produto);
-
-            total++;
         }
-
-        workbook.close();
-
         return total;
     }
 }

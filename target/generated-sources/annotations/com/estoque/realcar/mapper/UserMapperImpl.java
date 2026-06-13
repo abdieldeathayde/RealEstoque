@@ -3,13 +3,15 @@ package com.estoque.realcar.mapper;
 import com.estoque.realcar.dto.UserDTO;
 import com.estoque.realcar.entities.User;
 import com.estoque.realcar.entities.UserRole;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-05-16T20:12:54-0300",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 25.0.3 (Azul Systems, Inc.)"
+    date = "2026-06-13T16:22:37-0300",
+    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.46.0.v20260407-0427, environment: Java 21.0.10 (Eclipse Adoptium)"
 )
 @Component
 public class UserMapperImpl implements UserMapper {
@@ -50,5 +52,33 @@ public class UserMapperImpl implements UserMapper {
         UserDTO userDTO = new UserDTO( username, password, role );
 
         return userDTO;
+    }
+
+    @Override
+    public List<UserDTO> toDTOs(List<User> users) {
+        if ( users == null ) {
+            return null;
+        }
+
+        List<UserDTO> list = new ArrayList<UserDTO>( users.size() );
+        for ( User user : users ) {
+            list.add( toDTO( user ) );
+        }
+
+        return list;
+    }
+
+    @Override
+    public List<User> toEntities(List<UserDTO> dtos) {
+        if ( dtos == null ) {
+            return null;
+        }
+
+        List<User> list = new ArrayList<User>( dtos.size() );
+        for ( UserDTO userDTO : dtos ) {
+            list.add( toEntity( userDTO ) );
+        }
+
+        return list;
     }
 }

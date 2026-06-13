@@ -1,16 +1,17 @@
 package com.estoque.realcar.service;
 
 
-import com.estoque.realcar.dto.request.ProdutoRequestDTO;
-import com.estoque.realcar.dto.response.ProdutoResponseDTO;
-
-import com.estoque.realcar.repository.ProdutoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.estoque.realcar.dto.request.ProdutoRequestDTO;
+import com.estoque.realcar.dto.response.ProdutoResponseDTO;
+import com.estoque.realcar.entities.Produto;
+import com.estoque.realcar.repository.ProdutoRepository;
 
 @Service
 public class ProdutoService {
@@ -73,4 +74,3 @@ public class ProdutoService {
         );
     }
 }
-

@@ -1,8 +1,9 @@
 package com.estoque.realcar.repository;
 
-import com.estoque.realcar.service.Produto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.estoque.realcar.entities.Produto;
 
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {

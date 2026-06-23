@@ -11,14 +11,10 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-//import com.estoque.realcar.service.ExcelImportService;
+import com.estoque.realcar.service.ExcelImportService;
 import com.estoque.realcar.dto.request.ProdutoRequestDTO;
 import com.estoque.realcar.dto.response.ProdutoResponseDTO;
 import jakarta.validation.Valid;
-
-//import org.apache.poi.ss.usermodel.Sheet;
-//import org.apache.poi.ss.usermodel.Workbook;
-//import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,49 +37,53 @@ public class ProdutoController {
 
     private final ProdutoService produtoService;
 
-//    private final ExcelImportService excelImportService;
+    private final ExcelImportService excelImportService;
 
 
 //    private final ExcelImportService excelImportService;
 
 
-    public ProdutoController(ProdutoService produtoService) {
+    public ProdutoController(
+            ProdutoService produtoService,
+            ExcelImportService excelImportService) {
+
         this.produtoService = produtoService;
-
+        this.excelImportService = excelImportService;
     }
 
 
 
-     @CrossOrigin(origins = "*")
-     @RestController
-     public class ImportacaoController {
-         @PostMapping("/importar")
-         public ResponseEntity<String> importar(@RequestParam("file") MultipartFile file) {
-              // processamento...
-            return ResponseEntity.ok("Importação concluída!");
-         }
-     }
+//     @CrossOrigin(origins = "*")
+//     @RestController
+//     public class ImportacaoController {
+//         @PostMapping("/importar")
+//         public ResponseEntity<String> importar(@RequestParam("file") MultipartFile file) {
+//              // processamento...
+//            return ResponseEntity.ok("Importação concluída!");
+//         }
+//     }
 
 
 
-     @PostMapping("/importar")
-     public ResponseEntity<String> importar(@RequestParam("file") MultipartFile file) {
-         try {
-             // Ler o arquivo com Apache POI
+    @PostMapping("/importar")
+    public ResponseEntity<?> importarDePlanilha(
+            @RequestParam("file") MultipartFile file) {
 
-             Workbook workbook = new XSSFWorkbook(file.getInputStream());
-             Sheet sheet = workbook.getSheetAt(0);
+        try {
 
-//             Workbook workbook = new XSSFWorkbook(file.getInputStream());
-//             Sheet sheet = workbook.getSheetAt(0);
+            int totalImportado =
+                    excelImportService.importarESalvar(file);
 
-             // processar dados...
-             return ResponseEntity.ok("Importação concluída!");
-         } catch (Exception e) {
-             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                                 .body("Erro ao processar arquivo: " + e.getMessage());
-         }
-     }
+            return ResponseEntity.ok(Map.of(
+                    "sucesso", true,
+                    "totalImportado", totalImportado
+            ));
+
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(Map.of("erro", e.getMessage()));
+        }
+    }
 
 
     @GetMapping
@@ -143,78 +143,56 @@ public class ProdutoController {
 //        }
 //    }
 
-//    @PostMapping("/importar/visualizar")
-//    public ResponseEntity<?> visualizarImportacao(@RequestParam("file") MultipartFile file) {
-//        try {
-//            List<ProdutoRequestDTO> produtos = excelImportService.importarDePlanilha(file);
-//            return ResponseEntity.ok(Map.of(
-//                    "total", produtos.size(),
-//                    "produtos", produtos,
-//                    "mensagem", "Produtos prontos para importar"
-//            ));
-//        } catch (IOException e) {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-//                    .body(Map.of("erro", "Erro ao ler arquivo: " + e.getMessage()));
-//        } catch (IllegalArgumentException e) {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-//                    .body(Map.of("erro", e.getMessage()));
-//        }
-//    }
-
 
     /**
      * Importa e salva produtos de um arquivo Excel
      * O arquivo deve conter as colunas: Nome, Quantidade, Preço
      */
+//
+//    @PostMapping("/importar")
+//    public ResponseEntity<?> importarDePlanilha(@RequestParam("file") MultipartFile file) {
+//        try {
+//            int totalImportado = excelImportService.importarESalvar(file);
+//            return ResponseEntity.status(HttpStatus.CREATED)
+//                    .body(Map.of(
+//                            "sucesso", true,
+//                            "totalImportado", totalImportado,
+//                            "mensagem", totalImportado + " produto(s) importado(s) com sucesso"
+//                    ));
+//        } catch (IOException e) {
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+//                    .body(Map.of(
+//                            "sucesso", false,
+//                            "erro", "Erro ao ler arquivo: " + e.getMessage()
+//                    ));
+//        } catch (IllegalArgumentException e) {
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+//                    .body(Map.of(
+//                            "sucesso", false,
+//                            "erro", e.getMessage()
+//                    ));
+//        }
+//    }
 
-//    @PostMapping("/importar")
-//    public ResponseEntity<?> importarDePlanilha(@RequestParam("file") MultipartFile file) {
-//        try {
-//            int totalImportado = excelImportService.importarESalvar(file);
-//            return ResponseEntity.status(HttpStatus.CREATED)
-//                    .body(Map.of(
-//                            "sucesso", true,
-//                            "totalImportado", totalImportado,
-//                            "mensagem", totalImportado + " produto(s) importado(s) com sucesso"
-//                    ));
-//        } catch (IOException e) {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-//                    .body(Map.of(
-//                            "sucesso", false,
-//                            "erro", "Erro ao ler arquivo: " + e.getMessage()
-//                    ));
-//        } catch (IllegalArgumentException e) {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-//                    .body(Map.of(
-//                            "sucesso", false,
-//                            "erro", e.getMessage()
-//                    ));
-//        }
-//    }
-//    @PostMapping("/importar")
-//    public ResponseEntity<?> importarDePlanilha(@RequestParam("file") MultipartFile file) {
-//        try {
-//            int totalImportado = excelImportService.importarESalvar(file);
-//            return ResponseEntity.status(HttpStatus.CREATED)
-//                    .body(Map.of(
-//                            "sucesso", true,
-//                            "totalImportado", totalImportado,
-//                            "mensagem", totalImportado + " produto(s) importado(s) com sucesso"
-//                    ));
-//        } catch (IOException e) {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-//                    .body(Map.of(
-//                            "sucesso", false,
-//                            "erro", "Erro ao ler arquivo: " + e.getMessage()
-//                    ));
-//        } catch (IllegalArgumentException e) {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-//                    .body(Map.of(
-//                            "sucesso", false,
-//                            "erro", e.getMessage()
-//                    ));
-//        }
-//    }
+    @PostMapping("/importar/visualizar")
+    public ResponseEntity<?> visualizarImportacao(
+            @RequestParam("file") MultipartFile file) {
+
+        try {
+
+            List<ProdutoRequestDTO> produtos =
+                    excelImportService.importarDePlanilha(file);
+
+            return ResponseEntity.ok(Map.of(
+                    "total", produtos.size(),
+                    "produtos", produtos
+            ));
+
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(Map.of("erro", e.getMessage()));
+        }
+    }
 
 }
 

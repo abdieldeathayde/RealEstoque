@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Cadastro - Sistema de Estoque</title>
-<<<<<<< HEAD
-    <link rel="stylesheet" href="css/style.css">
-=======
+
+    <!-- ✅ em Spring Boot arquivos static NÃO usam ../ -->
     <link rel="stylesheet" href="../static/cadastro.css">
->>>>>>> 0dc24ae (hash de senha)
 </head>
+
 <body>
 
 <div class="container">
@@ -16,22 +15,23 @@
 
     <form id="cadastroForm">
 
-        <input type="text"
-               id="username"
-               placeholder="Usuário"
-               required />
+        <input
+                type="text"
+                id="username"
+                placeholder="Usuário"
+                required
+        />
 
-        <input type="password"
-               id="password"
-               placeholder="Senha"
-               required />
+        <input
+                type="password"
+                id="password"
+                placeholder="Senha"
+                required
+        />
 
         <select id="role">
             <option value="USER">Usuário</option>
-<<<<<<< HEAD
             <option value="ADMIN">Administrador</option>
-=======
->>>>>>> 0dc24ae (hash de senha)
         </select>
 
         <button type="submit">Cadastrar</button>
@@ -40,11 +40,8 @@
     </form>
 </div>
 
-<<<<<<< HEAD
-<script src="js/cadastro.js"></script>
-=======
+<!-- ✅ faltava fechar aspas -->
 <script src="../static/cadastro.js"></script>
->>>>>>> 0dc24ae (hash de senha)
 
 </body>
 </html>

@@ -283,96 +283,128 @@
         }
         
         // CRUD operations
-        function saveProduct() {
-            if (!productForm.checkValidity()) {
-                productForm.reportValidity();
-                return;
-            }
-            
-            const id = productIdInput.value ? parseInt(productIdInput.value) : 0;
-            const description = document.getElementById('productDescription').value;
-            const quantity = parseInt(document.getElementById('productQuantity').value);
-            const price = parseFloat(document.getElementById('productPrice').value);
+     function saveProduct() {
 
-             const payload = {
-                nome: description,
-                preco: price,
-                quantidade: quantity
-            };
-            
-            if (id) {
-        // Atualizar produto
-        fetch(`http://localhost:8080/produtos/${id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(payload)
-        })
-        .then(res => {
-            if (!res.ok) throw new Error('Erro ao atualizar produto');
-            return res.json();
-        })
-        .then(data => {
-            alert('Produto atualizado com sucesso!');
-            closeModal();
-            loadProductsFromAPI();
-        })
-        .catch(err => console.error('Erro:', err));
-        } else {
-            // Cadastrar novo produto
-            fetch('http://localhost:8080/produtos/importar', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            })
-            .then(res => {
-                if (!res.ok) throw new Error('Erro ao cadastrar produto');
-                return res.json();
-            })
-            .then(data => {
-                alert('Produto cadastrado com sucesso!');
-                closeModal();
-                loadProductsFromAPI();
-            })
-            .catch(err => console.error('Erro:', err));
-        }
-    }
-      function deleteProduct() {
-        const productId = parseInt(productIdToDelete.value);
+         if (!productForm.checkValidity()) {
+             productForm.reportValidity();
+             return;
+         }
 
-        fetch(`http://localhost:8080/produtos/importar/${productId}`, {
-            method: 'DELETE'
-        })
-        .then(res => {
-            if (!res.ok) throw new Error('Erro ao excluir produto');
-            alert('Produto excluído com sucesso!');
-            closeDeleteModal();
-            loadProductsFromAPI();
-        })
-        .catch(err => console.error('Erro:', err));
-    }
+         const id = productIdInput.value
+             ? parseInt(productIdInput.value)
+             : null;
 
-    function loadProductsFromAPI() {
-        fetch('http://localhost:8080/produtos/importar')
-            .then(res => res.json())
-            .then(data => {
-                // Suponha que a API retorne no formato { id, nome, preco, quantidade }
-                products = data.map(p => ({
-                    id: p.id,
-                    description: p.nome,
-                    price: p.preco,
-                    quantity: p.quantidade
-                }));
+         const payload = {
+             nome: document.getElementById('productDescription').value,
+             quantidade: parseInt(document.getElementById('productQuantity').value),
+             preco: parseFloat(document.getElementById('productPrice').value)
+         };
 
-                filterProducts();
-                updateStats();
-            })
-            .catch(err => console.error('Erro ao carregar produtos:', err));
-    }
+         const url = id
+             ? `http://localhost:8080/produtos/${id}`
+             : 'http://localhost:8080/produtos';
 
+         const method = id ? 'PUT' : 'POST';
+
+         fetch(url, {
+             method: method,
+             headers: {
+                 'Content-Type': 'application/json'
+             },
+             body: JSON.stringify(payload)
+         })
+             .then(async res => {
+
+                 const text = await res.text();
+
+                 if (!res.ok) {
+                     throw new Error(text || 'Erro ao salvar produto');
+                 }
+
+                 return text ? JSON.parse(text) : {};
+             })
+             .then(() => {
+
+                 alert(
+                     id
+                         ? 'Produto atualizado com sucesso!'
+                         : 'Produto cadastrado com sucesso!'
+                 );
+
+                 closeModal();
+                 loadProductsFromAPI();
+
+             })
+             .catch(err => {
+                 console.error(err);
+                 alert(err.message);
+             });
+     }
+     function deleteProduct() {
+
+         const productId = parseInt(productIdToDelete.value);
+
+         fetch(`http://localhost:8080/produtos/${productId}`, {
+             method: 'DELETE'
+         })
+             .then(res => {
+
+                 if (!res.ok) {
+                     throw new Error('Erro ao excluir produto');
+                 }
+
+                 alert('Produto excluído com sucesso!');
+                 closeDeleteModal();
+                 loadProductsFromAPI();
+
+             })
+             .catch(err => {
+                 console.error(err);
+                 alert(err.message);
+             });
+     }
+
+ function loadProductsFromAPI() {
+
+     fetch('http://localhost:8080/produtos')
+         .then(async res => {
+
+             const text = await res.text();
+
+             console.log('Resposta da API:', text);
+
+             if (!res.ok) {
+                 throw new Error(`HTTP ${res.status}`);
+             }
+
+             if (!text.trim()) {
+                 products = [];
+                 renderProducts();
+                 updateStats();
+                 return [];
+             }
+
+             return JSON.parse(text);
+         })
+         .then(data => {
+
+             products = data.map(p => ({
+                 id: p.id,
+                 description: p.nome,
+                 quantity: p.quantidade,
+                 price: p.preco
+             }));
+
+             currentPage = 1;
+
+             filterProducts();
+             updateStats();
+
+         })
+         .catch(err => {
+             console.error('Erro ao carregar produtos:', err);
+         });
+ }
     // ============== EXCEL IMPORT FUNCTIONS ==============
 
     /**
@@ -495,7 +527,7 @@
                 `<strong>${data.total} produto(s) encontrado(s)</strong><br>Revise os dados abaixo e confirme a importação`,
                 'success'
             );
-            
+
             document.getElementById('previewContainer').classList.remove('hidden');
         })
         .catch(err => {
@@ -525,11 +557,11 @@
                     `<strong>✅ Importação Concluída!</strong><br>${data.mensagem}`,
                     'success'
                 );
-                
+
                 // Limpar formulário
                 document.getElementById('arquivoExcel').value = '';
                 document.getElementById('previewContainer').classList.add('hidden');
-                
+
                 // Atualizar lista
                 setTimeout(() => {
                     loadProductsFromAPI();

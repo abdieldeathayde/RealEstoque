@@ -4,9 +4,8 @@ import com.estoque.realcar.dto.request.ProdutoRequestDTO;
 import com.estoque.realcar.dto.response.ProdutoResponseDTO;
 import com.estoque.realcar.service.ExcelImportService;
 import com.estoque.realcar.service.ProdutoService;
-
 import jakarta.validation.Valid;
-
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,20 +16,13 @@ import java.util.List;
 import java.util.Map;
 
 @CrossOrigin("*")
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoController {
 
     private final ProdutoService produtoService;
     private final ExcelImportService excelImportService;
-
-    public ProdutoController(
-            ProdutoService produtoService,
-            ExcelImportService excelImportService
-    ) {
-        this.produtoService = produtoService;
-        this.excelImportService = excelImportService;
-    }
 
     @GetMapping
     public ResponseEntity<List<ProdutoResponseDTO>> listarTodos() {
@@ -39,38 +31,23 @@ public class ProdutoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ProdutoResponseDTO> buscarPorId(@PathVariable Long id) {
-        return produtoService.buscarPorId(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return ResponseEntity.ok(produtoService.buscarPorId(id));
     }
 
     @PostMapping
-    public ResponseEntity<ProdutoResponseDTO> criar(
-            @Valid @RequestBody ProdutoRequestDTO dto
-    ) {
-        ProdutoResponseDTO salvo = produtoService.salvar(dto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(salvo);
+    public ResponseEntity<ProdutoResponseDTO> criar(@Valid @RequestBody ProdutoRequestDTO dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(produtoService.salvar(dto));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProdutoResponseDTO> atualizar(
-            @PathVariable Long id,
-            @Valid @RequestBody ProdutoRequestDTO dto
-    ) {
-        return produtoService.atualizar(id, dto)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<ProdutoResponseDTO> atualizar(@PathVariable Long id, @Valid @RequestBody ProdutoRequestDTO dto) {
+        return ResponseEntity.ok(produtoService.atualizar(id, dto));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
-        boolean deletado = produtoService.deletar(id);
-
-        if (deletado) {
-            return ResponseEntity.noContent().build();
-        }
-
-        return ResponseEntity.notFound().build();
+        produtoService.deletar(id);
+        return ResponseEntity.noContent().build();
     }
 
     /**

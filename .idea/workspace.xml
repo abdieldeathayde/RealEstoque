@@ -4,12 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b13273ae-24ce-44cd-bc55-d535a4e5bbf6" name="Changes" comment="alterando hash e login com JWT">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="b13273ae-24ce-44cd-bc55-d535a4e5bbf6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/exception/IdUrlDiferenteDoCorpoException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/exception/ProdutoJaExisteException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/exception/ProdutoNaoEncontradoException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/mapper/ProdutoMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/service/validator/ProdutoValidator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/controller/ProdutoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/controller/ProdutoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/dto/request/ProdutoRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/dto/request/ProdutoRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/dto/response/ProdutoResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/dto/response/ProdutoResponseDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/entities/Produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/entities/Produto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/entities/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/repository/ProdutoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/repository/ProdutoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/service/ProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/service/ProdutoService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +29,7 @@
     </persistenceIdMap>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="69" />
+    <option name="cachedIndexableFilesCount" value="73" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -30,27 +37,35 @@
       <list>
         <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
+        <option value="Exception" />
       </list>
     </option>
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "luan-filipin"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;luan-filipin&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/luan-filipin/RealEstoque.git",
-    "accountId": "16f88b85-8121-4242-9597-9b1c70231923"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/luan-filipin/RealEstoque.git&quot;,
+    &quot;accountId&quot;: &quot;16f88b85-8121-4242-9597-9b1c70231923&quot;
   }
-}]]></component>
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
+  </component>
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -59,46 +74,50 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="38Tova0gLbRjKRDtZqP05WSJVMj" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ProdutosApplication.executor": "Run",
-    "Maven.realcar [clean,install,-U].executor": "Run",
-    "Maven.realcar [clean,install].executor": "Run",
-    "Maven.realcar [clean].executor": "Run",
-    "Maven.realcar [install].executor": "Run",
-    "Maven.realcar [mvn,spring-boot:run].executor": "Run",
-    "Maven.realcar [spring-boot:run].executor": "Run",
-    "Maven.realcar.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "melhoria-domain",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/abdieldeathayde/Desktop/RealCarEstoque/RealEstoque",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "project.propCompiler",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ProdutosApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.realcar [clean,install,-U].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.realcar [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.realcar [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.realcar [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.realcar [mvn,spring-boot:run].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.realcar [spring-boot:run].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.realcar.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;melhoria-service-produto&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/abdieldeathayde/Desktop/RealCarEstoque/RealEstoque&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.estoque.realcar.entities" />
@@ -201,7 +220,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772412108543</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="- Implementado as anotações @Getter, @Setter, @AllArgsConstructor, @NoArgsConstructor para que nao seja necessário criar os metodos e construtores na mão.&#10;- Implementado anotação @Column para incluir o nullable = false.&#10;- Removido a anotação @Repository pois a JPA ja detecta e registra essa interface automaticamente.">
+      <option name="closed" value="true" />
+      <created>1782245566576</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1782245566576</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,7 +236,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="alterando hash e login com JWT" />
-    <option name="LAST_COMMIT_MESSAGE" value="alterando hash e login com JWT" />
+    <MESSAGE value="- Implementado as anotações @Getter, @Setter, @AllArgsConstructor, @NoArgsConstructor para que nao seja necessário criar os metodos e construtores na mão.&#10;- Implementado anotação @Column para incluir o nullable = false.&#10;- Removido a anotação @Repository pois a JPA ja detecta e registra essa interface automaticamente." />
+    <option name="LAST_COMMIT_MESSAGE" value="- Implementado as anotações @Getter, @Setter, @AllArgsConstructor, @NoArgsConstructor para que nao seja necessário criar os metodos e construtores na mão.&#10;- Implementado anotação @Column para incluir o nullable = false.&#10;- Removido a anotação @Repository pois a JPA ja detecta e registra essa interface automaticamente." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

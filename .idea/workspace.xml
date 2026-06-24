@@ -5,35 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b13273ae-24ce-44cd-bc55-d535a4e5bbf6" name="Changes" comment="alterando hash e login com JWT">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/controller/ProdutoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/controller/ProdutoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/dto/request/ProdutoRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/dto/request/ProdutoRequestDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/entities/Produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/entities/Produto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/service/ExcelImportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/service/ExcelImportService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/estoque/realcar/config/CorsConfig$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/estoque/realcar/config/CorsConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/estoque/realcar/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/estoque/realcar/config/SecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/estoque/realcar/controller/ProdutoController$ImportacaoController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/estoque/realcar/controller/ProdutoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/estoque/realcar/controller/ProdutoController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/estoque/realcar/dto/request/ProdutoRequestDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/estoque/realcar/dto/request/ProdutoRequestDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/estoque/realcar/mapper/UserMapperImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/estoque/realcar/mapper/UserMapperImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/estoque/realcar/repository/ProdutoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/estoque/realcar/repository/ProdutoRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/estoque/realcar/service/ExcelImportService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/estoque/realcar/service/ExcelImportService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/estoque/realcar/service/Produto.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/estoque/realcar/service/ProdutoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/estoque/realcar/service/ProdutoService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/estoque/realcar/mapper/UserMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/estoque/realcar/mapper/UserMapperImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/realcar-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/realcar-1.0-SNAPSHOT.jar.original" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/entities/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/repository/ProdutoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/repository/ProdutoRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +21,10 @@
       <entry key="_C:/Users/Athay/dev/Estoque/Estoque" value="38Tova0gLbRjKRDtZqP05WSJVMj" />
     </persistenceIdMap>
   </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="69" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -55,6 +35,22 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "luan-filipin"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/luan-filipin/RealEstoque.git",
+    "accountId": "16f88b85-8121-4242-9597-9b1c70231923"
+  }
+}]]></component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -78,13 +74,14 @@
     "Maven.realcar [spring-boot:run].executor": "Run",
     "Maven.realcar.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "melhoria-domain",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",

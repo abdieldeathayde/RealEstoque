@@ -5,7 +5,5 @@ import org.springframework.stereotype.Repository;
 
 import com.estoque.realcar.entities.Produto;
 
-@Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
-
 }

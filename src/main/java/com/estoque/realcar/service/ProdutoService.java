@@ -4,6 +4,7 @@ package com.estoque.realcar.service;
 import com.estoque.realcar.dto.request.ProdutoRequestDTO;
 import com.estoque.realcar.dto.response.ProdutoResponseDTO;
 
+import com.estoque.realcar.entities.Produto;
 import com.estoque.realcar.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,12 @@ public class ProdutoService {
         Produto produto = toEntity(dto);
         Produto salvo = produtoRepository.save(produto);
         return toDTO(salvo);
+    }
+
+    @org.springframework.transaction.annotation.Transactional
+    public List<ProdutoResponseDTO> salvarTodos(List<ProdutoRequestDTO> dtos) {
+        List<Produto> produtos = dtos.stream().map(this::toEntity).collect(Collectors.toList());
+        return produtoRepository.saveAll(produtos).stream().map(this::toDTO).collect(Collectors.toList());
     }
 
     public Optional<ProdutoResponseDTO> atualizar(Long id, ProdutoRequestDTO dto) {

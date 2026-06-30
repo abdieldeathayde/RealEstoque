@@ -19,49 +19,42 @@
     <name>realcar</name>
     <description>Sistema de Estoque RealCar</description>
 
-    <!-- ================= JAVA ================= -->
     <properties>
         <java.version>21</java.version>
         <mapstruct.version>1.6.3</mapstruct.version>
-        <jjwt.version>0.11.5</jjwt.version>
+        <jjwt.version>0.12.6</jjwt.version>
+        <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
     </properties>
 
-    <!-- ================= DEPENDENCIES ================= -->
     <dependencies>
 
-        <!-- WEB -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- SECURITY -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
-        <!-- DATA JPA -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!-- MYSQL -->
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
 
-        <!-- H2 (DEV ONLY) -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
 
-        <!-- JWT -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
@@ -82,20 +75,17 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- VALIDATION -->
         <dependency>
             <groupId>jakarta.validation</groupId>
             <artifactId>jakarta.validation-api</artifactId>
         </dependency>
 
-        <!-- MAPSTRUCT -->
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>${mapstruct.version}</version>
         </dependency>
 
-        <!-- LOMBOK -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -103,14 +93,12 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- EXCEL (POI) -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>5.2.5</version>
         </dependency>
 
-        <!-- TEST -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -119,25 +107,28 @@
 
     </dependencies>
 
-    <!-- ================= BUILD ================= -->
     <build>
         <plugins>
 
-            <!-- SPRING BOOT -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
-            <!-- COMPILER -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.14.0</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
-
                     <annotationProcessorPaths>
+
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>1.18.34</version>
+                        </path>
 
                         <path>
                             <groupId>org.mapstruct</groupId>
@@ -147,8 +138,8 @@
 
                         <path>
                             <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                            <version>1.18.34</version>
+                            <artifactId>lombok-mapstruct-binding</artifactId>
+                            <version>${lombok-mapstruct-binding.version}</version>
                         </path>
 
                     </annotationProcessorPaths>

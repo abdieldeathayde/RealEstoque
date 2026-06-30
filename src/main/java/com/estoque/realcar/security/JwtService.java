@@ -12,6 +12,7 @@ import io.jsonwebtoken.io.Decoders;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import javax.crypto.SecretKey;
 
 import java.security.Key;
 import java.util.Date;
@@ -40,7 +41,7 @@ public class JwtService {
                 .setExpiration(
                         new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24)
                 )
-                .signWith(getSignKey(), SignatureAlgorithm.HS256)
+                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
@@ -79,19 +80,18 @@ public class JwtService {
     // =============================
 
     private Claims extractAllClaims(String token) {
-        return Jwts.parserBuilder()
-                .setSigningKey(getSignKey())
+        return Jwts.parser()
+                .verifyWith(getSignInKey())
                 .build()
-                .parseClaimsJws(token)
-                .getBody();
+                .parseSignedClaims(token)
+                .getPayload();
     }
-
 
     // =============================
     // CHAVE SECRETA
     // =============================
 
-    private Key getSignKey() {
+    private SecretKey getSignInKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }

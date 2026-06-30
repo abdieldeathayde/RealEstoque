@@ -5,23 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b13273ae-24ce-44cd-bc55-d535a4e5bbf6" name="Changes" comment="Alterando">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/controller/NotaFiscalController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/entities/ItemNotaFiscal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/entities/NotaFiscal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/NotaFiscal.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/repository/ProdutoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/repository/ProdutoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/service/Produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/entities/Produto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/service/ProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/service/ProdutoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/service/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/service/UserDetailsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/estoque/realcar/repository/ProdutoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/estoque/realcar/repository/ProdutoRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/estoque/realcar/service/Produto.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/estoque/realcar/service/ProdutoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/estoque/realcar/service/ProdutoService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/estoque/realcar/service/UserDetailsServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/estoque/realcar/service/UserDetailsServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/security/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/estoque/realcar/security/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/estoque/realcar/mapper/UserMapperImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/estoque/realcar/mapper/UserMapperImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/estoque/realcar/security/JwtService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/estoque/realcar/security/JwtService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/estoque/realcar/mapper/UserMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/estoque/realcar/mapper/UserMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/realcar-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/realcar-1.0-SNAPSHOT.jar.original" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +51,7 @@
   }
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
